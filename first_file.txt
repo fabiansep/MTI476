@@ -1,0 +1,4 @@
+###### READ ME ######
+First file of the project.
+
+In the docs folder, you’ll find all the documents related with the project.
