@@ -1,0 +1,41 @@
+<!ELEMENT establecimiento 		(country
+								,adress
+								,geo?
+								,openingHours?
+								,phoneList?
+								,currenciesAccepted
+								,PaymentAccepted
+								,aggregatedRating?)>
+<!ELEMENT country		  		(#PCDATA)>
+<!ELEMENT adress		  		(streetAdress,adressLocality,adressRegion)>
+<!ELEMENT geo			  		(latitude,longitude)>
+<!ELEMENT openingHours			(openingHour+)>
+<!ELEMENT phoneList				(phone*)>
+<!ELEMENT currenciesAccepted	(currency+)>
+<!ELEMENT PaymentAccepted		(payMethod+)>
+<!ELEMENT aggregatedRating		(ratingValue,reviewCount)>
+<!--atributos establecimiento-->
+<!ATTLIST establecimiento 	name 			CDATA #REQUIRED>
+<!ATTLIST establecimiento 	legalName 		CDATA #REQUIRED>
+<!ATTLIST establecimiento 	email			CDATA #REQUIRED>
+<!ATTLIST establecimiento	manager			CDATA #REQUIRED>
+<!--atributos country-->
+<!ATTLIST country 		  	iso31661Code	CDATA #REQUIRED>
+<!--elementos de adress-->
+<!ELEMENT streetAdress 		(#PCDATA)>
+<!ELEMENT adressLocality 	(#PCDATA)>
+<!ELEMENT adressRegion 		(#PCDATA)>
+<!--elementos de geo-->
+<!ELEMENT latitude			(#PCDATA)>
+<!ELEMENT longitude			(#PCDATA)>
+<!--elementos de openingHours-->
+<!ELEMENT openingHour			(#PCDATA)>
+<!--elementos de phoneList-->
+<!ELEMENT phone					(#PCDATA)>
+<!--elementos de currenciesAccepted-->
+<!ELEMENT currency	 		(#PCDATA)>
+<!--elementos de PaymentAccepted-->
+<!ELEMENT payMethod	 		(#PCDATA)>
+<!--elementos de aggregatedRating-->
+<!ELEMENT ratingValue 		(#PCDATA)>
+<!ELEMENT reviewCount 		(#PCDATA)>
