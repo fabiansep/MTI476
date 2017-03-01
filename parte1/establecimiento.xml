@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE pedido SYSTEM "establecimiento.dtd">
 
 <establecimiento name="La Quena Plaza de Armas"
                  legalName="La Quena Ltda."
@@ -12,7 +12,7 @@
 		<adressRegion>Region Metropolitana, RM</adressRegion>
 	</adress>
 	<geo>
-		<latitude>-33.441027</latitude> 
+		<latitude>-33.441027</latitude>
 		<longitude>-70.65346</longitude>
 	</geo>
 	<openingHours>
@@ -20,7 +20,7 @@
 		<openingHour>Do    10:00-17:00</openingHour>
 	</openingHours>
 	<phoneList>
-		<phone>+562212345678</phone>
+		<phone>+56974589487</phone>
 	</phoneList>
 	<currenciesAccepted>
 		<currency>USD</currency>
@@ -35,4 +35,3 @@
 		<reviewCount>1</reviewCount>
 	</aggregatedRating>
 </establecimiento>
-
