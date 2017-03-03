@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "fabiansep.net/data/producto.json",
+  "type": "object",
+  "properties": {
+    "producto": {
+      "type": "object",
+      "title": "Producto schema.",
+      "description": "JSON que define un Producto",
+      "properties": {
+        "idProduct": {
+          "type": "integer",
+          "title": "IdProduct schema.",
+          "description": "Identificador interno Producto"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name schema.",
+          "description": "Nombre del Producto"
+        },
+        "country": {
+          "type": "object",
+          "title": "Country schema.",
+          "description": "Schema del atributo Pais",
+          "properties": {
+            "iso31661Code": {
+              "type": "string",
+              "title": "Iso31661Code schema.",
+              "description": "Codigo Largo 2 Pais"
+            },
+            "value": {
+              "type": "string",
+              "title": "Value schema.",
+              "description": "NOmbre del Pais"
+            }
+          },
+          "required": [
+            "iso31661Code",
+            "value"
+          ],      
+          "additionalProperties": false
+        },
+        "geo": {
+          "type": "object",
+          "title": "Geo schema.",
+          "description": "Coordendas Geograficas",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "title": "Latitude schema.",
+              "description": "Latitud"
+            },
+            "longitude": {
+              "type": "number",
+              "title": "Longitude schema.",
+              "description": "Longitud"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "additionalProperties": false
+        },
+        "history": {
+          "type": "string",
+          "title": "History schema.",
+          "description": "Historia del Producto"
+        },
+        "clasificationList": {
+          "type": "array",
+          "title": "ClasificationList schema.",
+          "description": "Lista de clasificacion",
+          "items": {
+            "type": "string",
+            "title": "Clasificacion",
+            "description": "Clasificacion de un producto",
+            "minItems":1
+          }
+        },
+        "height": {
+          "type": "object",
+          "title": "Height schema.",
+          "description": "Height",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "title": "Value schema.",
+              "description": "Valor"
+            },
+            "unitCode": {
+              "type": "string",
+              "title": "UnitCode schema.",
+              "description": "Unidad de medida",
+              "maxLength":3
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false
+        },
+        "weight": {
+          "type": "object",
+          "title": "Weight schema.",
+          "description": "Weight",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "title": "Value schema.",
+              "description": "Valor"
+            },
+            "unitCode": {
+              "type": "string",
+              "title": "UnitCode schema.",
+              "description": "Unidad de Medida",
+              "maxLength":3
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "idProduct",
+        "name",
+        "country",
+        "geo",
+        "history",
+        "clasificationList",
+        "height",
+        "weight"
+      ],
+      "additionalProperties": false
+    }
+ 
+  },
+  "required": [
+    "producto"
+  ]
+  ,"additionalProperties": false
+}

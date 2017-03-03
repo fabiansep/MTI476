@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "fabiansep.net/data/test.json",
+  "id": "fabiansep.net/data/establecimiento.json",
   "type": "object",
   "properties": {
     "establecimiento": {

@@ -1,0 +1,29 @@
+<!ELEMENT producto 		(	name,
+							country,
+							geo?,
+							history,
+							clasificationList,
+							height,
+							weight
+
+							)>
+<!ELEMENT name			  		(#PCDATA)>
+<!ELEMENT country		  		(#PCDATA)>
+<!ELEMENT geo			  		(latitude,longitude)>
+<!ELEMENT history				(#PCDATA)>
+<!ELEMENT clasificationList		(clasification*)>
+<!ELEMENT height				(value,unitCode)>
+<!ELEMENT weight				(value,unitCode)>
+
+<!--atributos producto-->
+<!ATTLIST producto 	idProduct 	CDATA #REQUIRED>
+<!--atributos country-->
+<!ATTLIST country 		  	iso31661Code	CDATA #REQUIRED>
+<!--elementos de geo-->
+<!ELEMENT latitude			(#PCDATA)>
+<!ELEMENT longitude			(#PCDATA)>
+<!--elementos de clasificationList-->
+<!ELEMENT clasification		(#PCDATA)>
+<!--elementos de height-->
+<!ELEMENT value				(#PCDATA)>
+<!ELEMENT unitCode			(#PCDATA)>
