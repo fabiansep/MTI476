@@ -1,0 +1,62 @@
+/**
+ * @swagger
+ * /api/puppies:
+ *   post:
+ *     tags:
+ *       - Puppies
+ *     description: Creates a new puppy
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: puppy
+ *         description: Puppy object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Puppy'
+ *     responses:
+ *       200:
+ *         description: Successfully created
+ */
+router.post('/api/puppies', db.createPuppy);
+/**
+ * @swagger
+ * /api/puppies/{id}:
+ *   put:
+ *     tags:
+ *       - Puppies
+ *     description: Updates a single puppy
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: puppy
+ *       in: body
+ *       description: Fields for the Puppy resource
+ *       schema:
+ *         type: array
+ *         $ref: '#/definitions/Puppy'
+ *     responses:
+ *       200:
+ *         description: Successfully updated
+ */
+router.put('/api/puppies/:id', db.updatePuppy);
+/**
+ * @swagger
+ * /api/puppies/{id}:
+ *   delete:
+ *     tags:
+ *       - Puppies
+ *     description: Deletes a single puppy
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: Puppy's id
+ *         in: path
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully deleted
+ */
+router.delete('/api/puppies/:id', db.removePuppy);
