@@ -1,23 +1,27 @@
 <!DOCTYPE pedido SYSTEM "establecimiento.dtd">
 
-<establecimiento name="La Quena Plaza de Armas"
-                 legalName="La Quena Ltda."
-                 email="contacto@laquena.cl"
-                 manager="Juan Perez Perez"
-                 >
+<establecimiento establecimientoId="1">
+	<name>La Quena Plaza de Armas</name>
+	<legalName>La Quena Ltda.</legalName>
+	<email>contacto@laquena.cl</email>
+	<manager>Juan Perez Perez</manager>
 	<country iso31661Code="CL">Chile</country>
-	<adress>
-		<streetAdress>Agustinas 1202</streetAdress>
-		<adressLocality>Santiago</adressLocality>
-		<adressRegion>Region Metropolitana, RM</adressRegion>
-	</adress>
+	<address>
+		<streetAddress>Agustinas 1202</streetAddress>
+		<addressLocality>Santiago</addressLocality>
+		<addressRegion>Region Metropolitana, RM</addressRegion>
+	</address>
 	<geo>
 		<latitude>-33.441027</latitude>
 		<longitude>-70.65346</longitude>
 	</geo>
+   <aggregatedRating>
+		<ratingValue>5</ratingValue>
+		<reviewCount>1</reviewCount>
+	</aggregatedRating>	
 	<openingHours>
-		<openingHour>Lu-Sa 09:00-20:00</openingHour>
-		<openingHour>Do    10:00-17:00</openingHour>
+		<openingHour sequence="1">Lu-Sa 09:00-20:00</openingHour>
+		<openingHour sequence="2">Do    10:00-17:00</openingHour>
 	</openingHours>
 	<phoneList>
 		<phone>+56974589487</phone>
@@ -27,11 +31,7 @@
 		<currency>CLP</currency>
 	</currenciesAccepted>
 	<PaymentAccepted>
-		<payMethod>Efectivo</payMethod>
-		<payMethod>RedCompra</payMethod>
+		<payMethod payMethodId="1">Efectivo</payMethod>
+		<payMethod payMethodId="2">RedCompra</payMethod>
 	</PaymentAccepted>
-   <aggregatedRating>
-		<ratingValue>5</ratingValue>
-		<reviewCount>1</reviewCount>
-	</aggregatedRating>
 </establecimiento>

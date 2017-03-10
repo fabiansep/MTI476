@@ -2,19 +2,20 @@
 <xs:element name="establecimiento">
   <xs:complexType>
       <xs:sequence>
-        <xs:element name="country"                type="countryType"/>
-        <xs:element name="adress"                 type="adressType"/>
+		<xs:element name="name"                	  type="xs:string"/>
+		<xs:element name="legalName"           	  type="xs:string"/>		
+		<xs:element name="email"				  type="emailAddressType"/>		
+		<xs:element name="manager"           	  type="xs:string"/>				
+        <xs:element name="country"                type="countryType"/>		
+        <xs:element name="address"                 type="addressType"/>
         <xs:element name="geo"                    type="geoType"   />
+        <xs:element name="aggregatedRating"       type="aggregatedRatingType" />		
         <xs:element name="openingHours"           type="openingHoursType" />
         <xs:element name="phoneList"              type="phoneListType" />
         <xs:element name="currenciesAccepted"     type="currenciesAcceptedType"/>
         <xs:element name="PaymentAccepted"        type="PaymentAcceptedType" />
-        <xs:element name="aggregatedRating"       type="aggregatedRatingType" />
       </xs:sequence>
-      <xs:attribute name="name"                   type="xs:string"/>
-      <xs:attribute name="legalName"              type="xs:string"/>
-      <xs:attribute name="email"                  type="emailAddressType"/>
-      <xs:attribute name="manager"                type="xs:string"/>
+      <xs:attribute name="establecimientoId"      type="xs:integer"/>
   </xs:complexType>
 </xs:element>
 <xs:complexType name="countryType">
@@ -24,11 +25,11 @@
     </xs:extension>
   </xs:simpleContent>
 </xs:complexType>
-<xs:complexType name="adressType">
+<xs:complexType name="addressType">
   <xs:sequence>
-      <xs:element name="streetAdress"             type="xs:string"/>
-      <xs:element name="adressLocality"           type="xs:string"/>
-      <xs:element name="adressRegion"             type="xs:string"/>
+      <xs:element name="streetAddress"             type="xs:string"/>
+      <xs:element name="addressLocality"           type="xs:string"/>
+      <xs:element name="addressRegion"             type="xs:string"/>
   </xs:sequence>
 </xs:complexType>
 <xs:complexType name="geoType">
@@ -38,9 +39,16 @@
   </xs:sequence>
 </xs:complexType>
 <xs:complexType name="openingHoursType">
-  <xs:sequence>
-      <xs:element name="openingHour"              type="xs:string" minOccurs="1" maxOccurs="7"/>
+  <xs:sequence> 
+      <xs:element name="openingHour"              type="openingHourType" minOccurs="1" maxOccurs="7"/>	  
   </xs:sequence>
+</xs:complexType>
+<xs:complexType name="openingHourType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="sequence"           	  type="xs:integer"/>
+    </xs:extension>
+  </xs:simpleContent>
 </xs:complexType>
 <xs:complexType name="phoneListType">
   <xs:sequence>
@@ -78,11 +86,13 @@
         <xs:pattern value="[A-Z]{2,3}"/>
     </xs:restriction>
 </xs:simpleType>
-<xs:simpleType name="payMethodType">
-    <xs:restriction base="xs:string">
-        <xs:pattern value="[a-zA-Z]+"/>
-    </xs:restriction>
-</xs:simpleType>
+<xs:complexType name="payMethodType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="payMethodId"           type="xs:integer"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
 <xs:simpleType name="phoneType">
     <xs:restriction base="xs:string">
         <xs:pattern value="\+[0-9]{11}"/>
