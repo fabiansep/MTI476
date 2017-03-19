@@ -10,6 +10,7 @@ var swaggerJSDoc = require('swagger-jsdoc');
 var routes = require('./routes/index');
 
 var app = express();
+var db = require('./db');
 // Swagger Part below var app = express();
 
 // swagger definition
@@ -30,6 +31,9 @@ var options = {
   // path to the API docs
   apis: ['./routes/*.js'],
 };
+
+
+
 
 // initialize swagger-jsdoc
 var swaggerSpec = swaggerJSDoc(options);
@@ -93,8 +97,16 @@ app.use(function(err, req, res, next) {
 
 
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+// Connect to MySQL on start
+db.connect(db.MODE_PRODUCTION, function(err) {
+  if (err) {
+    console.log('Unable to connect to MySQL.')
+    process.exit(1)
+  } else {
+    app.listen(3000, function() {
+      console.log('Listening on port 3000...')
+    })
+  }
+})
 
 module.exports = app;

@@ -1,10 +1,17 @@
 var promise = require('bluebird');
 var mysql     =    require('mysql');
 var libxmljs = require("libxmljs");
+
+var consultas = require("./test.js")
+
+
 var options = {
   // Initialization Options
   promiseLib: promise
 };
+
+
+var result;
 
 var pool      =    mysql.createPool({
     connectionLimit : 100, //important
@@ -64,8 +71,7 @@ function getAllEstablecimientos(req,res,next) {
 function establecimientoToXML(data){
 
   var xml = '<?xml version="1.0" encoding="UTF-8"?> ';
-
-  var xml = xml +' <establecimientos>'
+  xml = xml +' <establecimientos>'
   for(i= 0; i < data.length;i++){
 
       xml = xml + ' <establecimiento establecimientoId=\''+ data[i].establecimientoId+'\'';
@@ -94,11 +100,23 @@ function establecimientoToXML(data){
       xml = xml + '   <reviewCount>' + data[i].reviewCount +'</reviewCount>\n';
       xml = xml + ' </aggregatedRating>\n';
 
-      var openingHour = getOpeningHour(data[i].establecimientoId);
-      console.log(data[i].establecimientoId);
-      console.log(openingHour);
+      consultas.getOpeningHour(data[i].establecimientoId,function(err,rows){
+
+        if(err)
+          console.log(err);
+        else {
+          xml = xml + '<openingHours>\n'
+          for(j=0;j< rows.length;j++){
+            xml= xml +'<openingHour>' + rows[j].description + '</openingHour>';
+          }
+          xml = xml + '</openingHours>\n'
+        }
+
+      });
+      //console.log(data[i].establecimientoId);
 
       xml = xml + ' </establecimiento>'
+      console.log('xml =' + xml);
                         /* +'name'=""+data.name+"";*/
       /*+'>'
       +'<caca>dd</caca>'
@@ -108,40 +126,13 @@ function establecimientoToXML(data){
  xml = xml+' </establecimientos>'
   //xml = xml + '<msj>Hola</msj>';
 
+
   var xmlDoc = libxmljs.parseXml(xml);
-  console.log(xmlDoc.toString());
+  //console.log(xmlDoc.toString());
   return xmlDoc.toString();
 
 }
 
-function getOpeningHour(establecimientoId) {
-
-    pool.getConnection(function(err,connection){
-        if (err) {
-            return '';
-        }
-
-        console.log("SELECT description FROM openingHour where establecimientoId = "+establecimientoId);
-        connection.query("SELECT description FROM openingHour where establecimientoId = "+establecimientoId,function(err,rows){
-
-            if(!err) {
-
-              //console.log(headers);
-              //console.log(req);
-
-              //console.log(rows);
-              return rows;
-
-            }
-            connection.release();
-        });
-
-        connection.on('error', function(err) {
-              //res.json({"code" : 100, "status" : "Error in connection database"});
-              return '';
-        });
-  });
-}
 
 module.exports = {
   getAllEstablecimientos: getAllEstablecimientos
