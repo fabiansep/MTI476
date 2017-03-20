@@ -18,7 +18,7 @@
    <aggregatedRating>
 		<ratingValue>5</ratingValue>
 		<reviewCount>1</reviewCount>
-	</aggregatedRating>	
+	</aggregatedRating>
 	<openingHours>
 		<openingHour sequence="1">Lu-Sa 09:00-20:00</openingHour>
 		<openingHour sequence="2">Do    10:00-17:00</openingHour>

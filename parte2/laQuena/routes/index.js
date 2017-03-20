@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var app    = require('../app');
+var mongoose = require('mongoose');
+// Import Models and controllers
+var models     = require('../models/establecimiento')(app, mongoose);
+var establecimientoCtrl = require('../controllers/establecimientos');
 
 var db = require('../queries/queries');
 var db_mysql = require('../queries/mysql_queries');
@@ -70,5 +75,5 @@ router.get('/api/puppies/:id', db.getSinglePuppy);
 *         schema:
 *           $ref: '#/definitions/Puppy'
 */
-router.get('/api/establecimiento', db_mysql.getAllEstablecimientos);
+router.get('/api/establecimiento', establecimientoCtrl.findEstablecimientos);
 module.exports = router;
