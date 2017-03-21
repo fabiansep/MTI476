@@ -1,35 +1,56 @@
-/*//File: controllers/establecimiento.js
-var mongoose = require('mongoose');
-var establecimiento  = mongoose.model('establecimiento');
 
-//GET - Return all establecimiento in the DB
-exports.findAllEstablecimiento = function(req, res) {
-    establecimiento.find(function(err, establecimientos) {
-    if(err) res.send(500, err.message);
-    console.log('GET /establecimiento')
-        res.status(200).jsonp(establecimientos);
-    });
-};
-
-
-*/
 var mongoose = require('mongoose');
 var establecimiento  = mongoose.model('establecimiento');
 var libxmljs = require("libxmljs");
 
-//GET - Return all tvshows in the DB
+//GET - Return all establecimientos in the laquena DB
 exports.findEstablecimientos = function(req, res) {
 	establecimiento.find(function(err, establecimientos) {
     if(err) res.send(500, err.message);
     console.log('GET /establecimientos');
 
-    console.log(req.headers);
-    console.log(req.originalUrl);
+		if (req.headers.accept == '*/*')
+			res.status(200).jsonp(establecimientos);
+		else if(req.headers.accept.match(/ *xml*/))
+			  exportToXML(res,establecimientos);
     console.log(establecimientos[0].establecimientoId);
 
-    exportToXML(res,establecimientos);
-		//res.status(200).jsonp(establecimientos);
 	});
+};
+
+//POST - Insert a new establecimiento in the laquena db
+exports.addEstablecimiento = function(req, res) {
+    console.log('POST');
+    var establecimiento_ = new establecimiento({
+				establecimientoId:	0,
+        name:    						req.body.name,
+        legalName:					req.body.legalName,
+        email:  						req.body.email,
+        manager:   					req.body.manager,
+        country:  					req.body.country,
+        adress:    					req.body.adress,
+        geo:  							req.body.geo,
+				phoneList:  				req.body.phoneList,
+				openingHours: 			req.body.openingHours,
+				aggregatedRating:		req.body.aggregatedRating
+
+    });
+
+		establecimiento.find({},{establecimientoId:2}) //fin the max value of establecimientoId
+										.sort({establecimientoId:-1})
+										.limit(1)
+										.exec(function(err,establecimiento){
+												establecimiento_.establecimientoId = establecimiento[0].establecimientoId + 1;
+												establecimiento_.save(function(err, establecimiento_) { // Do the Insert
+																if(err)
+																	return res.status(500).send( err.message);
+																res.status(201)
+																	 .set('Content-Type','text/json')
+																	 .location('/establecimientos/'+ establecimiento_.establecimientoId)
+																	 .send('{ "status":201,"type": "success", "establecimientoId": "'+establecimiento_.establecimientoId+'" }');
+												});
+
+										});
 };
 
 /*
@@ -65,23 +86,19 @@ function exportToXML(res,establecimientos){
     xml = xml + ' 	</aggregatedRating>\n';
     xml = xml + ' 	<openingHours>\n';
     for(j=0; j< establecimientos[i].openingHours.length;j++){
-
           xml = xml + '   	<openingHour>'+ establecimientos[i].openingHours[j]+'</openingHour>\n';
     }
     xml = xml + ' 	</openingHours>\n';
-
 		xml = xml + ' 	<phoneList>\n';
     for(j=0; j< establecimientos[i].phoneList.length;j++){
 
           xml = xml + '   	<phone>'+ establecimientos[i].phoneList[j]+'</phone>\n';
     }
     xml = xml + ' 	</phoneList>\n';
-
     xml = xml + ' </establecimiento>\n'
 
   }
   xml = xml+' </establecimientos>'
-
 
   var xmlDoc = libxmljs.parseXml(xml);
   res.status(200)

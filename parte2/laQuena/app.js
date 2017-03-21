@@ -30,8 +30,8 @@ app.use(router);
 var establecimiento = express.Router();
 
 establecimiento.route('/establecimientos')
-  .get(establecimientoCtrl.findEstablecimientos);
-  /*.post(TVShowCtrl.addTVShow);
+  .get(establecimientoCtrl.findEstablecimientos)
+  .post(establecimientoCtrl.addEstablecimiento);/*
 
 tvshows.route('/tvshows/:id')
   .get(TVShowCtrl.findById)
