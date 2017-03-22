@@ -1,7 +1,8 @@
 
 var mongoose = require('mongoose');
 var establecimiento  = mongoose.model('establecimiento');
-var libxmljs = require("libxmljs");
+var libxmljs = require('libxmljs');
+var funciones =require('./funciones');
 
 //GET - Return all establecimientos in the laquena DB
 exports.findEstablecimientos = function(req, res) {
@@ -9,13 +10,38 @@ exports.findEstablecimientos = function(req, res) {
     if(err) res.send(500, err.message);
     console.log('GET /establecimientos');
 
-		if (req.headers.accept == '*/*')
-			res.status(200).jsonp(establecimientos);
-		else if(req.headers.accept.match(/ *xml*/))
-			  exportToXML(res,establecimientos);
-    console.log(establecimientos[0].establecimientoId);
+		var response = funciones.responseType(req);
+
+		if(response=="json")
+			exportToJSon(res,establecimientos)
+		else if(response=="xml")
+			exportToXML(res,establecimientos);
+		else if(response=="html")
+
+		console.log(req);
+
+    //console.log(establecimientos[0].establecimientoId);
 
 	});
+};
+
+
+//GET - Return a TVShow with specified ID
+exports.findByEstablecimientoId = function(req, res) {
+
+		if(req.params.establecimientoId.match( / *.*/))
+			
+
+    establecimiento.find({'establecimientoId':req.params.establecimientoId}, function(err, establecimiento_) {
+    if(err) return res.send(500, err.message);
+	    console.log('GET /establecimiento/' + req.params.establecimientoId);
+			if (req.headers.accept == '*/*')
+				res.status(200).jsonp(establecimiento_);
+			else if(req.headers.accept.match(/ *xml*/))
+					exportToXML(res,establecimiento_);
+			else if(req.headers.accept.match(/ *json*/))
+					res.status(200).jsonp(establecimiento_);
+    });
 };
 
 //POST - Insert a new establecimiento in the laquena db
@@ -40,7 +66,12 @@ exports.addEstablecimiento = function(req, res) {
 										.sort({establecimientoId:-1})
 										.limit(1)
 										.exec(function(err,establecimiento){
-												establecimiento_.establecimientoId = establecimiento[0].establecimientoId + 1;
+												console.log("a:*" +establecimiento+'*');
+											  if(establecimiento == null || establecimiento =='')
+													establecimiento_.establecimientoId =  1;
+												else
+													establecimiento_.establecimientoId = establecimiento[0].establecimientoId + 1;
+
 												establecimiento_.save(function(err, establecimiento_) { // Do the Insert
 																if(err)
 																	return res.status(500).send( err.message);
@@ -51,6 +82,46 @@ exports.addEstablecimiento = function(req, res) {
 												});
 
 										});
+};
+
+//PUT - Insert a new establecimiento in the laquena db
+exports.updateEstablecimiento = function(req, res) {
+    console.log('PUT');
+
+		/*
+		 * check supported Content-Type if doesn't match, either do transform or send 415 responses (media no supported)
+		 */
+		establecimiento.find({'establecimientoId':req.params.establecimientoId}, function(err, establecimiento_) {
+			establecimiento_.name   						= req.body.name;
+			establecimiento_.legalName    			= req.body.legalName;
+			establecimiento_.email 							= req.body.email;
+			establecimiento_.manager  					= req.body.manager;
+			establecimiento_.country	 					= req.body.country;
+			establecimiento_.adress   					= req.body.adress;
+			establecimiento_.geo 								= req.body.geo;
+			establecimiento_.phoneList 					= req.body.phoneList;
+			establecimiento_.openingHours 			= req.body.openingHours;
+			establecimiento_.aggregatedRating		= req.body.aggregatedRating;
+
+			establecimiento_.save(function(err) {
+				if(err)
+				return res.status(500).send(err.message);
+				res.status(200)
+					 .jsonp(establecimiento_);
+			});
+		});
+
+};
+
+
+//DELETE - Delete a establecimiento with specified establecimientoId
+exports.deleteEstablecimiento = function(req, res) {
+		console.log('DELETE /establecimientos/' + req.params.establecimientoId);
+
+    establecimiento.remove({'establecimientoId':req.params.establecimientoId}, function(err, establecimiento_) {
+            if(err) return res.status(500).send(err.message);
+      			res.status(204).send();
+    });
 };
 
 /*
@@ -114,6 +185,6 @@ function exportToHTML(){
 /*
  *
  */
-function exportToJSon(){
-
+function exportToJSon(res,establecimiento){
+	res.status(200).jsonp(establecimiento);
 }

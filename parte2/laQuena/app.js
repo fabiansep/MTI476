@@ -31,13 +31,13 @@ var establecimiento = express.Router();
 
 establecimiento.route('/establecimientos')
   .get(establecimientoCtrl.findEstablecimientos)
-  .post(establecimientoCtrl.addEstablecimiento);/*
+  .post(establecimientoCtrl.addEstablecimiento);
 
-tvshows.route('/tvshows/:id')
-  .get(TVShowCtrl.findById)
-  .put(TVShowCtrl.updateTVShow)
-  .delete(TVShowCtrl.deleteTVShow);
-*/
+establecimiento.route('/establecimientos/:establecimientoId')
+  .get(establecimientoCtrl.findByEstablecimientoId)
+  .put(establecimientoCtrl.updateEstablecimiento)
+  .delete(establecimientoCtrl.deleteEstablecimiento);
+
 app.use('/api', establecimiento);
 
 // Start server
