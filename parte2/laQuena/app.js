@@ -6,10 +6,13 @@ var express         = require("express"),
 
     mongoose.Promise = require('bluebird');
 
+var uristring =       process.env.MONGODB_URI ||
+      'mongodb://user:userlaquena@ds137110.mlab.com:37110/laquena';
 
+var theport = process.env.PORT || 5000;
 // Connection to DB
 //mongoose.connect('mongodb://localhost/laquena', function(err, res) {
-mongoose.connect('mongodb://user:userlaquena@ds137110.mlab.com:37110/laquena', function(err, res) {
+mongoose.connect(uristring, function(err, res) {
   if(err) throw err;
   console.log('Connected to Database');
 });
@@ -65,6 +68,6 @@ apiLaQuena.route('/productos/:productoId')
 app.use('/api/', apiLaQuena);
 
 // Start server
-app.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
+app.listen(theport, function() {
+  console.log("Node server running on http://localhost:"+theport);
 });
