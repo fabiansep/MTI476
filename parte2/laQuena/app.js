@@ -8,7 +8,8 @@ var express         = require("express"),
 
 
 // Connection to DB
-mongoose.connect('mongodb://localhost/laquena', function(err, res) {
+//mongoose.connect('mongodb://localhost/laquena', function(err, res) {
+mongoose.connect('mongodb://user:userlaquena@ds137110.mlab.com:37110/laquena', function(err, res) {
   if(err) throw err;
   console.log('Connected to Database');
 });
