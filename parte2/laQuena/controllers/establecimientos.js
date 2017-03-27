@@ -6,7 +6,8 @@ var funciones =require('./funciones');
 
 //GET - Return all establecimientos in the laquena DB
 exports.findEstablecimientos = function(req, res) {
-	establecimiento.find(function(err, establecimientos) {
+
+	establecimiento.find({},{_id:0,__v:0,bodega:0},function(err, establecimientos) {
     if(err) res.send(500, err.message);
     console.log('GET /establecimientos');
 
@@ -26,20 +27,47 @@ exports.findEstablecimientos = function(req, res) {
 };
 
 
-//GET - Return a TVShow with specified ID
+//GET - Return a establecimiento with specified establecimientoId
 exports.findByEstablecimientoId = function(req, res) {
 
-		if(req.params.establecimientoId.match( / *.*/))
-			
+		var response = funciones.responseType(req);
 
-    establecimiento.find({'establecimientoId':req.params.establecimientoId}, function(err, establecimiento_) {
+	  console.log('GET /establecimiento/' + req.params.establecimientoId);
+
+		if (isNaN(parseInt(req.params.establecimientoId))){
+			if(req.params.establecimientoId.indexOf(".") == -1){
+				res.status(400)
+				 	 .set('Content-Type','text/json')
+				   .send('{ "status":400,"type": "error", "description": "Valid format is int dot {html,json,xml}. Missing dot." }');
+					 return;
+			}
+			else{
+						var extension = req.params.establecimientoId.substr(req.params.establecimientoId.indexOf(".")+1);
+					 	if (extension != 'json' || extension != 'xml' || extension != 'html'){
+							res.status(415)
+							   .set('Content-Type','text/json')
+							   .send('{ "status":415,"type": "error", "description": "Valid format is int dot {html,json,xml}. Missing dot." }');
+								 return;
+						}
+						else {
+							var processed_id =  parseInt(req.params.establecimientoId.substr(0,req.params.establecimientoId.indexOf(".")));
+							if(isNaN(processed_id)){
+								res.status(415)
+								   .set('Content-Type','text/json')
+								   .send('{ "status":415,"type": "error", "description": "Identifier MUST be an Number (NaN is returned)" }');
+									 return;
+							}
+						}
+			}
+		}
+		req.params.establecimientoId = parseInt(req.params.establecimientoId);
+    establecimiento.find({'establecimientoId':req.params.establecimientoId},{_id:0,__v:0,bodega:0}, function(err, establecimiento_) {
     if(err) return res.send(500, err.message);
-	    console.log('GET /establecimiento/' + req.params.establecimientoId);
-			if (req.headers.accept == '*/*')
-				res.status(200).jsonp(establecimiento_);
-			else if(req.headers.accept.match(/ *xml*/))
+			if (response == 'json')
+				exportToJSon(res,establecimiento_[0]);
+			else if(response=='xml')
 					exportToXML(res,establecimiento_);
-			else if(req.headers.accept.match(/ *json*/))
+			else if(response=='html')
 					res.status(200).jsonp(establecimiento_);
     });
 };
@@ -92,18 +120,18 @@ exports.updateEstablecimiento = function(req, res) {
 		 * check supported Content-Type if doesn't match, either do transform or send 415 responses (media no supported)
 		 */
 		establecimiento.find({'establecimientoId':req.params.establecimientoId}, function(err, establecimiento_) {
-			establecimiento_.name   						= req.body.name;
-			establecimiento_.legalName    			= req.body.legalName;
-			establecimiento_.email 							= req.body.email;
-			establecimiento_.manager  					= req.body.manager;
-			establecimiento_.country	 					= req.body.country;
-			establecimiento_.adress   					= req.body.adress;
-			establecimiento_.geo 								= req.body.geo;
-			establecimiento_.phoneList 					= req.body.phoneList;
-			establecimiento_.openingHours 			= req.body.openingHours;
-			establecimiento_.aggregatedRating		= req.body.aggregatedRating;
+			establecimiento_[0].name   						= req.body.name;
+			establecimiento_[0].legalName    			= req.body.legalName;
+			establecimiento_[0].email 							= req.body.email;
+			establecimiento_[0].manager  					= req.body.manager;
+			establecimiento_[0].country	 					= req.body.country;
+			establecimiento_[0].adress   					= req.body.adress;
+			establecimiento_[0].geo 								= req.body.geo;
+			establecimiento_[0].phoneList 					= req.body.phoneList;
+			establecimiento_[0].openingHours 			= req.body.openingHours;
+			establecimiento_[0].aggregatedRating		= req.body.aggregatedRating;
 
-			establecimiento_.save(function(err) {
+			establecimiento_[0].save(function(err) {
 				if(err)
 				return res.status(500).send(err.message);
 				res.status(200)

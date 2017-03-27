@@ -1,6 +1,16 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
+var bodegaSchema =  new Schema({
+
+    productoId: { type: Schema.ObjectId, ref: "producto" },
+    stock:      { type: Number},
+    price:     {
+                  value: Number,
+                  currency: String
+                }
+
+});
 
 var establecimientoSchema = new Schema({
   establecimientoId:  { type: Number },
@@ -27,6 +37,7 @@ var establecimientoSchema = new Schema({
   },
   openingHours: [String],
   phoneList:    [String],
+  bodega:       [bodegaSchema]
 });
 
 module.exports = mongoose.model('establecimiento', establecimientoSchema,'establecimiento');

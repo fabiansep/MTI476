@@ -11,6 +11,8 @@ exports.responseType=function(req){
     return 'html'
   else if (req.headers.accept == '*/*')
     return 'json';
+  else if(req.headers.accept.match(/ *json*/))
+      return 'json'    
   else if(req.headers.accept.match(/ *xml*/))
     return 'xml'
   else if(req.headers.accept.match(/ *html*/))
