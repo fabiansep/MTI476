@@ -1,7 +1,6 @@
 
 var mongoose = require('mongoose');
 var establecimiento  = mongoose.model('establecimiento');
-var libxmljs = require('libxmljs');
 var funciones =require('./funciones');
 
 //GET - Return all establecimientos in the laquena DB
@@ -18,8 +17,7 @@ exports.findEstablecimientos = function(req, res) {
 		else if(response=="xml")
 			exportToXML(res,establecimientos);
 		else if(response=="html")
-
-		console.log(req);
+			exportToHTML(res,establecimientos);
 
     //console.log(establecimientos[0].establecimientoId);
 
@@ -68,7 +66,7 @@ exports.findByEstablecimientoId = function(req, res) {
 			else if(response=='xml')
 					exportToXML(res,establecimiento_);
 			else if(response=='html')
-					res.status(200).jsonp(establecimiento_);
+					exportToHTML(res,establecimiento_);
     });
 };
 
@@ -207,9 +205,113 @@ function exportToXML(res,establecimientos){
 /*
  *
  */
-function exportToHTML(){
 
-}
+ function exportToHTML(res,establecimientos){
+ 	var html;
+
+ 	html = '<!DOCTYPE html>\n';
+ 	html = html + '<html>\n';
+ 	html = html + '<head>\n';
+ 	html = html + '	<meta charset="UTF-8">\n';
+ 	html = html + '	<title>Listado de Establecimientos</title>\n';
+ 	html = html + '</head>\n';
+ 	html = html + '<body>\n';
+
+	html = html + '	<h1>Establecimientos</h1>\n';
+
+ 	for(i= 0; i < establecimientos.length;i++){
+
+ 		html = html + '	<div id="'+establecimientos[i].establecimientoId+'">\n';
+ 		html = html + '		<h3>'+establecimientos[i].name+'</h3>\n';
+ 		html = html + '		<p> Nombre Legal: <span class="legalName">'+establecimientos[i].legalName+'</span></p>\n';
+		html = html + '		<p> Representante: <span class="manager">'+establecimientos[i].manager+'</span></p>\n';
+ 		html = html + '		<p>Pais: <span  iso31661Code="'+establecimientos[i].country.iso31661Code+'">'+establecimientos[i].country.value+'</span></p>\n';
+ 		html = html + '		<p>Direccion:  <span class="streetAdress">'+
+												establecimientos[i].adress.streetAdress+ '</span>'+
+											',<span class="adressLocality">' +
+												establecimientos[i].adress.adressLocality+ '</span>'+
+											',<span class="addressRegion">' +
+												establecimientos[i].adress.adressRegion+ '</span>'+
+											'</p>\n';
+
+		 html = html + '		<p>Geolocalizacion: </p>\n';
+		 html = html + '<ul>\n';
+		 html = html + '	<li>Latitude:<span class="latitude">'+establecimientos[i].geo.latitude+'</span></li>\n';
+		 html = html + '	<li>Longitude:<span class="longitude">'+establecimientos[i].geo.longitude+'</span></li>\n';
+		 html = html + '</ul>\n';
+
+		 html = html + '		<p>Rating: </p>\n';
+		 html = html + '<ul>\n';
+		 html = html + '	<li>ratingValue:<span class="ratingValue">'+establecimientos[i].aggregatedRating.ratingValue+'</span></li>\n';
+		 html = html + '	<li>reviewCount:<span class="reviewCount">'+ establecimientos[i].aggregatedRating.reviewCount+'</span></li>\n';
+		 html = html + '</ul>\n';
+
+		 html = html + '		<p>Horarios de Atencion: </p>\n';
+		 html = html + '<ul>\n';
+		 for(j=0; j< establecimientos[i].openingHours.length;j++){
+					 html = html + '<li><span class="openingHour">'+ establecimientos[i].openingHours[j]+'</span></li>\n';
+		 }
+		 html = html + '</ul>\n';
+
+		 html = html + '		<p>Contacto: </p>\n';
+	 	 html = html + '<ul>\n';
+		 html = html + '<li>Telefonos: <span class="phoneList">';
+
+
+		 for(j=0; j< establecimientos[i].phoneList.length;j++){
+			 		if(j > 0){
+					 	html = html +'-';
+					}
+					html = html +establecimientos[i].phoneList[j];
+		 }
+		 html = html + ' </span></li>\n';
+		 html = html + '<li>Correo: <span class="email">'+establecimientos[i].email+'</span></li>\n';
+		 html = html + '</ul>\n';
+
+ 		html = html + '	</div>\n';
+   }
+
+ /*
+ xml = xml + ' <establecimiento establecimientoId=\''+ establecimientos[i].establecimientoId+'\'>\n';
+ xml = xml + '   <name>'+establecimientos[i].name+'</name>\n';
+ xml = xml + '   <legalName>'+establecimientos[i].legalName+'</legalName>\n';
+ xml = xml + '   <email>'+establecimientos[i].email+'</email>\n';
+ xml = xml + '   <manager>'+establecimientos[i].manager+'</manager>\n';
+ xml = xml + '   <country iso31661Code=\'' + establecimientos[i].country.iso31661Code+'\'>' +establecimientos[i].country.value + '</country>\n';
+ xml = xml + ' 	<address>\n';
+ xml = xml + '   	<streetAddress>' + establecimientos[i].adress.streetAdress +'</streetAddress>\n';
+ xml = xml + '   	<addressLocality>' + establecimientos[i].adress.adressLocality +'</addressLocality>\n';
+ xml = xml + '   	<addressRegion>' + establecimientos[i].adress.adressRegion +'</addressRegion>\n';
+ xml = xml + ' 	</address>\n';
+ xml = xml + ' 	<geo>\n';
+ xml = xml + '   	<latitude>' + establecimientos[i].geo.latitude +'</latitude>\n';
+ xml = xml + '   	<longitude>' + establecimientos[i].geo.longitude +'</longitude>\n';
+ xml = xml + ' 	</geo>\n';
+ xml = xml + ' 	<aggregatedRating>\n';
+ xml = xml + '   	<ratingValue>' + establecimientos[i].aggregatedRating.ratingValue +'</ratingValue>\n';
+ xml = xml + '   	<reviewCount>' + establecimientos[i].aggregatedRating.reviewCount +'</reviewCount>\n';
+ xml = xml + ' 	</aggregatedRating>\n';
+ xml = xml + ' 	<openingHours>\n';
+ for(j=0; j< establecimientos[i].openingHours.length;j++){
+			 xml = xml + '   	<openingHour>'+ establecimientos[i].openingHours[j]+'</openingHour>\n';
+ }
+ xml = xml + ' 	</openingHours>\n';
+xml = xml + ' 	<phoneList>\n';
+ for(j=0; j< establecimientos[i].phoneList.length;j++){
+
+			 xml = xml + '   	<phone>'+ establecimientos[i].phoneList[j]+'</phone>\n';
+ }
+  */
+
+ 	html = html + '</body>\n';
+ 	html = html + '</html>\n';
+
+
+ 	res.status(200)
+      .set('Content-Type','text/html')
+      .send(html);
+ }
+
 /*
  *
  */

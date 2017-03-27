@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var establecimiento  = mongoose.model('establecimiento');
 var producto  = mongoose.model('producto');
-var libxmljs = require('libxmljs');
 var funciones =require('./funciones');
 
 //GET - Return all products of one Establecimiento in the laquena DB
