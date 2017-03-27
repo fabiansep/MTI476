@@ -284,10 +284,9 @@ function exportToXML(res,establecimientos,productoId){
   }
   xml = xml+' </bodega>'
   console.log(xml);
-  var xmlDoc = libxmljs.parseXml(xml);
   res.status(200)
      .set('Content-Type','text/xml')
-     .send(xmlDoc.toString());
+     .send(xml);
 }
 /*
  *

@@ -197,10 +197,10 @@ function exportToXML(res,establecimientos){
   }
   xml = xml+' </establecimientos>'
 
-  var xmlDoc = libxmljs.parseXml(xml);
+
   res.status(200)
      .set('Content-Type','text/xml')
-     .send(xmlDoc.toString());
+     .send(xml);
 }
 /*
  *

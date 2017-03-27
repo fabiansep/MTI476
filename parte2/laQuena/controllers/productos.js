@@ -115,29 +115,6 @@ exports.updateProducto = function(req, res) {
 		 //console.log(req.body);
 
 
-/*
-		 var update = new producto({
-				productoId:					req.params.productoId,
-				 name:    					req.body.name,
-				 history:						req.body.history,
-				 clasificationList:	req.body.clasificationList
-
-		 });
-
-		 var query = {"productoId": req.params.productoId}
-		 var options = {new: true};
-
-
-		 producto.findOneAndUpdate(query, update, options, function(err, producto_) {
-		   if (err) {
-				 console.log(err.message)
-		     return res.status(500).send(err.message);
-		   }
-			 res.status(200)
-					.jsonp(producto_);
-		   // at this point person is null.
-		 });*/
-
 		producto.find({'productoId':req.params.productoId}, function(err, producto_) {
 			producto_[0].name   							= req.body.name;
 			producto_[0].history    					= req.body.history;
@@ -146,9 +123,8 @@ exports.updateProducto = function(req, res) {
 			console.log(producto_[0]);
 			producto_[0].save(function(err) {
 				if(err)
-				return res.status(500).send(err.message);
-				res.status(200)
-					 .jsonp(producto_);
+				return res.status(500).send(err.message);		
+				exportToJSon(res,producto_[0]);
 			});
 		});
 
@@ -190,10 +166,10 @@ function exportToXML(res,productos){
   }
   xml = xml+' </productos>'
 
-  var xmlDoc = libxmljs.parseXml(xml);
+
   res.status(200)
      .set('Content-Type','text/xml')
-     .send(xmlDoc.toString());
+     .send(xml);
 }
 /*
  *
