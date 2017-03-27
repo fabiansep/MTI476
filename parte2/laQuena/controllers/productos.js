@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 var producto  = mongoose.model('producto');
-var libxmljs = require('libxmljs');
+//var libxmljs = require('libxmljs');
 var funciones =require('./funciones');
 
 //GET - Return all productos in the laquena DB
