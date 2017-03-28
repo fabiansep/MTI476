@@ -264,7 +264,7 @@ function exportToXML(res,establecimientos,productoId){
 
   for(i= 0; i < establecimientos.length;i++){
 
-    xml = xml + '   <establecimiento establecimientoId=\''+ establecimientos[i].establecimientoId+'\'>'+establecimientos[i].name+'</establecimiento>\n';
+    xml = xml + '   <establecimiento establecimientoId=\''+ establecimientos[i].establecimientoId+'\'>' +establecimientos[i].name+'</establecimiento>\n';
     xml = xml + ' 	<productos>\n';
     for(j=0; j< establecimientos[i].bodega.length;j++){
 

@@ -18,10 +18,8 @@ exports.findProductos = function(req, res) {
 			exportToXML(res,productos);
 		else if(response=="html")
 			exportToHTML(res,productos);
-		console.log(req);
-
+		//console.log(req);
     //console.log(productos[0].productoId);
-
 	});
 };
 
@@ -123,7 +121,7 @@ exports.updateProducto = function(req, res) {
 			console.log(producto_[0]);
 			producto_[0].save(function(err) {
 				if(err)
-				return res.status(500).send(err.message);		
+				return res.status(500).send(err.message);
 				exportToJSon(res,producto_[0]);
 			});
 		});
@@ -197,8 +195,6 @@ function exportToHTML(res,productos){
     }
 		html = html + '	</div>\n';
   }
-
-
 	html = html + '</body>\n';
 	html = html + '</html>\n';
 	console.log(html);
