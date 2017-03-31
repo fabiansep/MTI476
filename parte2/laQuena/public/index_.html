@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="scotchProducto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular TODO app</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+<body ng-controller="mainController">
+    <div class="container">
+    <!--Cabecera-->
+        <div class="jumbotron text-center">
+            <h1>Angular TODO List <span class="label label-info">{{ _productos.length }}</span></h1>
+        </div>
+        <!--Lista de Todos-->
+        <div id="producto-list" class="row">
+          <div class="col-sm-4 col-sm-offset-4">
+              <div class="panel" ng-repeat="producto in _productos">
+                  <div class="panel panel-info" itemscope itemtype="http://schema.org/Product" > <!-- panel-info -->
+                        <div class="panel-heading">
+                          <h3 class="panel-title"><span itemprop="name">{{ producto.name }}</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <span itemprop="description">{{ producto.history }}</span>
+                        </div>
+                        <div class="clasification" ng-repeat="clasification in producto.clasificationList">
+                          <span class="label label-primary">{{clasification}}</span>
+                      </div>
+                  </div>
+               </div>
+           </div>
+        </div>
+         <!--Formulario para insertar nuevos Todo
+         <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Inserta una tarea nueva" ng-model="formData.text">
+                    </div>
+                    <button class="btn btn-primary btn-lg" ng-click="createTodo()">Añadir</button>
+                </form>
+            </div>
+        </div>-->
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><!-- load angular 1.2.4 -->
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/productos.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+</body>
+</html>

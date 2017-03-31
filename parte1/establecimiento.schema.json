@@ -1,13 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "fabiansep.net/data/establecimiento.json",
-  "type": "object",
-  "properties": {
-    "establecimiento": {
-      "type": "object",
-      "title": "json de un establecimiento",
-      "description": "JSON Schema para validar un establecimiento",
+  "id": "laquena.herokuapp.com/public/data/establecimiento.json",
+
       "properties": {
+        "establecimientoId": {
+          "type": "number"
+        },
         "name": {
           "type": "string"
         },
@@ -93,7 +91,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "\\+[0-9]{12}"
+            "pattern": "\\+[0-9]{9,12}"
           },
           "minItems": 1,
           "maxItems": 5,
@@ -133,20 +131,16 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "name",
-        "legalName",
-        "email",
-        "manager",
-        "country",
-        "adress",
-        "geo"
-      ],
-      "additionalProperties": false
-    }
-  },
-  "required": [
-    "establecimiento"
-  ],
-  "additionalProperties": false
+    "required": [
+      "name",
+      "legalName",
+      "email",
+      "manager",
+      "country",
+      "adress",
+      "geo"
+    ],
+    "additionalProperties": false
+
+
 }

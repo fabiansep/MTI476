@@ -1,0 +1,15 @@
+{
+  "establecimientoId": 1,
+  "name": "La Quena Valdivia",
+  "productos": [
+    {
+      "productoID": 10,
+      "name": "Zampoñaaa",
+      "stock": 70,
+      "price": {
+        "value": 65000,
+        "currency": "CLP"
+      }
+    }
+  ]
+}

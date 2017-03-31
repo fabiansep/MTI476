@@ -3,17 +3,15 @@
   <xs:complexType>
       <xs:sequence>
 		<xs:element name="name"                	  type="xs:string"/>
-		<xs:element name="legalName"           	  type="xs:string"/>		
-		<xs:element name="email"				  type="emailAddressType"/>		
-		<xs:element name="manager"           	  type="xs:string"/>				
-        <xs:element name="country"                type="countryType"/>		
+		<xs:element name="legalName"           	  type="xs:string"/>
+		<xs:element name="email"				  type="emailAddressType"/>
+		<xs:element name="manager"           	  type="xs:string"/>
+        <xs:element name="country"                type="countryType"/>
         <xs:element name="address"                 type="addressType"/>
         <xs:element name="geo"                    type="geoType"   />
-        <xs:element name="aggregatedRating"       type="aggregatedRatingType" />		
+        <xs:element name="aggregatedRating"       type="aggregatedRatingType" />
         <xs:element name="openingHours"           type="openingHoursType" />
         <xs:element name="phoneList"              type="phoneListType" />
-        <xs:element name="currenciesAccepted"     type="currenciesAcceptedType"/>
-        <xs:element name="PaymentAccepted"        type="PaymentAcceptedType" />
       </xs:sequence>
       <xs:attribute name="establecimientoId"      type="xs:integer"/>
   </xs:complexType>
@@ -39,8 +37,8 @@
   </xs:sequence>
 </xs:complexType>
 <xs:complexType name="openingHoursType">
-  <xs:sequence> 
-      <xs:element name="openingHour"              type="openingHourType" minOccurs="1" maxOccurs="7"/>	  
+  <xs:sequence>
+      <xs:element name="openingHour"              type="openingHourType" minOccurs="1" maxOccurs="7"/>
   </xs:sequence>
 </xs:complexType>
 <xs:complexType name="openingHourType">
@@ -53,16 +51,6 @@
 <xs:complexType name="phoneListType">
   <xs:sequence>
       <xs:element name="phone"                    type="phoneType" minOccurs="1" maxOccurs="5"/>
-  </xs:sequence>
-</xs:complexType>
-<xs:complexType name="currenciesAcceptedType">
-  <xs:sequence>
-      <xs:element name="currency"                 type="currencyType" minOccurs="1" maxOccurs="3"/>
-  </xs:sequence>
-</xs:complexType>
-<xs:complexType name="PaymentAcceptedType">
-  <xs:sequence>
-      <xs:element name="payMethod"                type="payMethodType" minOccurs="1" maxOccurs="10"/>
   </xs:sequence>
 </xs:complexType>
 <xs:complexType name="aggregatedRatingType">
@@ -81,18 +69,6 @@
         <xs:pattern value="[A-Z]{2}"/>
     </xs:restriction>
 </xs:simpleType>
-<xs:simpleType name="currencyType">
-    <xs:restriction base="xs:string">
-        <xs:pattern value="[A-Z]{2,3}"/>
-    </xs:restriction>
-</xs:simpleType>
-<xs:complexType name="payMethodType">
-  <xs:simpleContent>
-    <xs:extension base="xs:string">
-      <xs:attribute name="payMethodId"           type="xs:integer"/>
-    </xs:extension>
-  </xs:simpleContent>
-</xs:complexType>
 <xs:simpleType name="phoneType">
     <xs:restriction base="xs:string">
         <xs:pattern value="\+[0-9]{11}"/>

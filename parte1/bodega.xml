@@ -1,0 +1,20 @@
+<!DOCTYPE precio SYSTEM "bodega.dtd">
+<bodega>
+    <establecimiento establecimientoId='1'>La Quena Valdivia</establecimiento>
+    <productos>
+        <producto productoID='10' name='Zampoñaaa'>
+            <stock>70</stock>
+            <price>
+                <value>65000</value>
+                <currency>CLP</currency>
+            </price>
+        </producto>
+				<producto productoID='10' name='Zampoñaaa'>
+            <stock>70</stock>
+            <price>
+                <value>65000</value>
+                <currency>CLP</currency>
+            </price>
+        </producto>				
+    </productos>
+</bodega>

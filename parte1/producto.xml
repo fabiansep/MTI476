@@ -1,22 +1,8 @@
 <!DOCTYPE producto SYSTEM "producto.dtd">
-<producto	idProduct = "12331">
-	<name>Charango</name>
-    <country iso31661Code="CL">Chile</country>
-	<geo>
-		<latitude>-33.441027</latitude>
-		<longitude>-70.65346</longitude>
-	</geo>	
-	<history>El charango es un instrumento de cuerda principalmente usado en la región de la cordillera de los Andes, con origen en la región del altiplano andino. Posee cinco cuerdas dobles, aunque hay variaciones con menos o más cuerdas, pero casi siempre en cinco órdenes o juegos.</history>
-	<clasificationList>
-		<clasification>Instrumento de Cuerda</clasification>
-		<clasification>Instrumento de Cuerda pulsada</clasification>
-	</clasificationList>
-	<height>
-		<value>30</value>
-		<unitCode>CM</unitCode>
-	</height>
-	<weight>
-		<value>1</value>
-		<unitCode>KG</unitCode>		
-	</weight>
-</producto>
+	<producto productoId='12'>
+			<name>Bombo</name>
+			<history>El bombo es un instrumento musical de percusión membranófono, de timbre muy grave aunque de tono indeterminado. Debido a su sonido grave, se usa habitualmente para marcar y mantener el pulso en diversos estilos de música.</history>
+			<clasificationList>
+					<clasification>Percusion</clasification>
+			</clasificationList>
+	</producto>

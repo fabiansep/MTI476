@@ -5,23 +5,19 @@
 								,country
 								,address
 								,geo?
-								,aggregatedRating?								
+								,aggregatedRating?
 								,openingHours?
-								,phoneList?
-								,currenciesAccepted
-								,PaymentAccepted)>
+								,phoneList?)>
 
-<!ELEMENT name			  		(#PCDATA)>								
-<!ELEMENT legalName		  		(#PCDATA)>								
-<!ELEMENT email			  		(#PCDATA)>								
-<!ELEMENT manager		  		(#PCDATA)>								
+<!ELEMENT name			  		(#PCDATA)>
+<!ELEMENT legalName		  		(#PCDATA)>
+<!ELEMENT email			  		(#PCDATA)>
+<!ELEMENT manager		  		(#PCDATA)>
 <!ELEMENT country		  		(#PCDATA)>
 <!ELEMENT address		  		(streetAddress,addressLocality,addressRegion)>
 <!ELEMENT geo			  		(latitude,longitude)>
 <!ELEMENT openingHours			(openingHour+)>
 <!ELEMENT phoneList				(phone*)>
-<!ELEMENT currenciesAccepted	(currency+)>
-<!ELEMENT PaymentAccepted		(payMethod+)>
 <!ELEMENT aggregatedRating		(ratingValue,reviewCount)>
 <!--atributos establecimiento-->
 <!ATTLIST establecimiento 	establecimientoId 	CDATA #REQUIRED>
@@ -40,11 +36,6 @@
 <!ATTLIST openingHour sequence	CDATA #REQUIRED>
 <!--elementos de phoneList-->
 <!ELEMENT phone					(#PCDATA)>
-<!--elementos de currenciesAccepted-->
-<!ELEMENT currency	 		(#PCDATA)>
-<!--elementos de PaymentAccepted-->
-<!ELEMENT payMethod	 		(#PCDATA)>
-<!ATTLIST payMethod	 payMethodId		CDATA #REQUIRED>
 <!--elementos de aggregatedRating-->
 <!ELEMENT ratingValue 		(#PCDATA)>
 <!ELEMENT reviewCount 		(#PCDATA)>

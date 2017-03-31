@@ -2,49 +2,16 @@
 <xs:element name="producto">
   <xs:complexType>
       <xs:sequence>
-        <xs:element name="name"           	  	type="xs:string" />	  
-        <xs:element name="country"              type="countryType"/>
-        <xs:element name="geo"                  type="geoType"   />
+        <xs:element name="name"           	  	type="xs:string" />
         <xs:element name="history"          	type="xs:string" />
         <xs:element name="clasificationList"	type="clasificationListType" />
-        <xs:element name="height"     			type="MedidasType"/>
-        <xs:element name="weight"		        type="MedidasType" />
       </xs:sequence>
-      <xs:attribute name="idProduct"            type="xs:integer"/>
+      <xs:attribute name="productoId"            type="xs:integer"/>
   </xs:complexType>
 </xs:element>
-<xs:complexType name="countryType">
-  <xs:simpleContent>
-    <xs:extension base="xs:string">
-      <xs:attribute name="iso31661Code"         type="iso31661CodeType"/>
-    </xs:extension>
-  </xs:simpleContent>
-</xs:complexType>
-<xs:complexType name="geoType">
-  <xs:sequence>
-      <xs:element name="latitude"               type="xs:decimal"/>
-      <xs:element name="longitude"              type="xs:decimal" />
-  </xs:sequence>
-</xs:complexType>
 <xs:complexType name="clasificationListType">
   <xs:sequence>
       <xs:element name="clasification"          type="xs:string" minOccurs="1" maxOccurs="7"/>
   </xs:sequence>
 </xs:complexType>
-<xs:complexType name="MedidasType">
-  <xs:sequence>
-      <xs:element name="value"            	 	type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-	  <xs:element name="unitCode"            	type="unitCodeType" minOccurs="1" maxOccurs="1"/>
-  </xs:sequence>
-</xs:complexType>
-<xs:simpleType name="iso31661CodeType">
-    <xs:restriction base="xs:string">
-        <xs:pattern value="[A-Z]{2}"/>
-    </xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="unitCodeType">
-    <xs:restriction base="xs:string">
-        <xs:pattern value="[a-zA-Z]{2,3}"/>
-    </xs:restriction>
-</xs:simpleType>
 </xs:schema>
