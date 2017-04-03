@@ -1,42 +1,70 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prueba</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="shortcut icon" href="../../assets/ico/favicon.png">-->
 
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
+    <title>Off Canvas Push Menu Template for Bootstrap</title>
 
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
+    <link href="./stylesheets/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="./stylesheets/sticky-footer.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./stylesheets/navmenu-push.css" rel="stylesheet">
 
-    </script>
-</head>
-<body>
-    <div class="container">
-    <!--Cabecera-->
-        <div class="jumbotron text-center">
-            <h1>Productos</h1>
-            <p> odid </p>
-        </div>
-        <!--Lista de Todos-->
-        <div  class="row">
-          <div class="col-sm-4 col-sm-offset-4">
-              <div class="panel" id="producto-list">
-                  <div class="panel panel-info" > <!-- panel-info -->
-                        <div class="panel-heading">
-                          <h3 class="panel-title"></span></h3>
-                        </div>
-                        <div class="panel-body">
-                            <span itemprop="description"></span>
-                        </div>
-                        <div class="clasification">
-                          <span class="label label-primary"></span>
-                      </div>
-                  </div>
-               </div>
-           </div>
-        </div>
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+      <a class="navmenu-brand" href="#">La Quena</a>
+      <ul class="nav navmenu-nav">
+        <li><a href="./">Establecimientos</a></li>
+        <li><a href="./productos.html">Productos</a></li>
+        <li><a href="./index.html">Inicio</a></li>
+      </ul>
     </div>
-</body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="container">
+      <!--Cabecera-->
+          <div class="jumbotron">
+              <h1>La Quena - MTI 476-</h1>
+          </div>
+
+      <p class="lead">La Quena es un sitio donde podrás encontrar productos típicos de distintos paises. De la misma forma, podrás encontrar las tiendas alrededor del mundo. Nuestra idea es facilitar a las personas los lugares donde pueden encontrar estos fabulosos instrumentos! </p>
+    </div><!-- /.container -->
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">
+          Sitio Web creado por Fabian Sepulveda E. fabian.sep@gmail.com
+        </span>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery-1.10.2.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jasny-bootstrap.min.js"></script>
+    <script src="./js/offcanvas.js"></script>
+  </body>
 </html>
