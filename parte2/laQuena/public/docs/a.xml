@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<establecimiento name="La Quena Plaza de Armas"
+                 legalName="La Quena Ltda."
+                 email="contacto@laquena.cl"
+                 manager="Juan Perez Perez">
+    <country iso31661Code="CL">Chile</country>
+    <adress>
+	     <streetAdress>Agustinas 1202</streetAdress>
+		   <adressLocality>Santiago</adressLocality>
+		   <adressRegion>Region Metropolitana, RM</adressRegion>
+	  </adress>
+    <geo>
+      <latitude>-33.441027</latitude>
+      <longitude>-70.65346</longitude>
+    </geo>
+    <openingHours>
+      <openingHour>Lu-Sa 09:00-20:00</openingHour>
+      <openingHour>Do    10:00-17:00</openingHour>
+  	</openingHours>
+    <phoneList>
+  		<phone>+56974589487</phone>
+  	</phoneList>
+    <currenciesAccepted>
+  		<currency>USD</currency>
+  		<currency>CLP</currency>
+  	</currenciesAccepted>
+    <PaymentAccepted>
+  		<payMethod>Efectivo</payMethod>
+  		<payMethod>RedCompra</payMethod>
+  	</PaymentAccepted>
+    <aggregatedRating>
+      <ratingValue>5</ratingValue>
+      <reviewCount>1</reviewCount>
+ 	  </aggregatedRating>
+</establecimiento>

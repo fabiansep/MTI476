@@ -1,0 +1,32 @@
+{
+  "establecimientoId": 1,
+  "name": "La Quena Valdivia",
+  "legalName": "La Quena Ltda",
+  "email": "contacto.valdivia@laquena.cl",
+  "manager": "Perico Lospalotes",
+  "phoneList": [
+    "+56974589487"
+  ],
+  "openingHours": [
+    "Lu-Sa 09:00-20:00",
+    "Do    10:00-17:00"
+  ],
+  "aggregatedRating": {
+    "ratingValue": 5,
+    "reviewCount": 1
+  },
+  "geo": {
+    "latitude": -33.441027,
+    "longitude": -70.65346
+  },
+  "adress": {
+    "streetAdress": "Agustinas 1202",
+    "adressLocality": "Santiago",
+    "adressRegion": "Region Metropolitana, RM"
+  },
+  "country": {
+    "iso31661Code": "CL",
+    "value": "Chile"
+  }
+
+}

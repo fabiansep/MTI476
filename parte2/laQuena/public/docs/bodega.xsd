@@ -1,0 +1,41 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="bodega">
+  <xs:complexType>
+      <xs:sequence>
+		      <xs:element name="establecimiento"  type="establecimientoType"/>
+		      <xs:element name="productos"        type="productosType"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:complexType name="establecimientoType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="establecimientoId"           type="xs:integer"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="productosType">
+  <xs:sequence>
+      <xs:element name="producto"             type="productoType" maxOccurs="500"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="productoType">
+  <xs:sequence>
+      <xs:element name="stock"                  type="xs:integer"/>
+      <xs:element name="price"                  type="priceType"/>
+  </xs:sequence>
+  <xs:attribute name="productoID"               type="xs:integer"/>
+  <xs:attribute name="name"                     type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="priceType">
+  <xs:sequence>
+      <xs:element name="value"                  type="xs:integer"/>
+      <xs:element name="currency"                  type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+
+</xs:schema>

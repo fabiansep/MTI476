@@ -1,0 +1,17 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="producto">
+  <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name"           	  	type="xs:string" />
+        <xs:element name="history"          	type="xs:string" />
+        <xs:element name="clasificationList"	type="clasificationListType" />
+      </xs:sequence>
+      <xs:attribute name="productoId"            type="xs:integer"/>
+  </xs:complexType>
+</xs:element>
+<xs:complexType name="clasificationListType">
+  <xs:sequence>
+      <xs:element name="clasification"          type="xs:string" minOccurs="1" maxOccurs="7"/>
+  </xs:sequence>
+</xs:complexType>
+</xs:schema>

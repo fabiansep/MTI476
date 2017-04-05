@@ -1,0 +1,77 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="establecimiento">
+  <xs:complexType>
+      <xs:sequence>
+		<xs:element name="name"                	  type="xs:string"/>
+		<xs:element name="legalName"           	  type="xs:string"/>
+		<xs:element name="email"				  type="emailAddressType"/>
+		<xs:element name="manager"           	  type="xs:string"/>
+        <xs:element name="country"                type="countryType"/>
+        <xs:element name="address"                 type="addressType"/>
+        <xs:element name="geo"                    type="geoType"   />
+        <xs:element name="aggregatedRating"       type="aggregatedRatingType" />
+        <xs:element name="openingHours"           type="openingHoursType" />
+        <xs:element name="phoneList"              type="phoneListType" />
+      </xs:sequence>
+      <xs:attribute name="establecimientoId"      type="xs:integer"/>
+  </xs:complexType>
+</xs:element>
+<xs:complexType name="countryType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="iso31661Code"           type="iso31661CodeType"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+<xs:complexType name="addressType">
+  <xs:sequence>
+      <xs:element name="streetAddress"             type="xs:string"/>
+      <xs:element name="addressLocality"           type="xs:string"/>
+      <xs:element name="addressRegion"             type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+<xs:complexType name="geoType">
+  <xs:sequence>
+      <xs:element name="latitude"                 type="xs:decimal"/>
+      <xs:element name="longitude"                type="xs:decimal" />
+  </xs:sequence>
+</xs:complexType>
+<xs:complexType name="openingHoursType">
+  <xs:sequence>
+      <xs:element name="openingHour"              type="openingHourType" minOccurs="1" maxOccurs="7"/>
+  </xs:sequence>
+</xs:complexType>
+<xs:complexType name="openingHourType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="sequence"           	  type="xs:integer"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+<xs:complexType name="phoneListType">
+  <xs:sequence>
+      <xs:element name="phone"                    type="phoneType" minOccurs="1" maxOccurs="5"/>
+  </xs:sequence>
+</xs:complexType>
+<xs:complexType name="aggregatedRatingType">
+  <xs:sequence>
+      <xs:element name="ratingValue"              type="xs:decimal"  />
+      <xs:element name="reviewCount"              type="xs:integer"  />
+  </xs:sequence>
+</xs:complexType>
+<xs:simpleType name="emailAddressType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})"/>
+    </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="iso31661CodeType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[A-Z]{2}"/>
+    </xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="phoneType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="\+[0-9]{11}"/>
+    </xs:restriction>
+</xs:simpleType>
+</xs:schema>

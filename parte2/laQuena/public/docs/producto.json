@@ -1,0 +1,12 @@
+{
+
+    "productoId": 1,
+        "name":"Charango",
+		    "history":"El charango es un instrumento de cuerda principalmente usado en la región de la cordillera de los Andes, con origen en la región del altiplano andino. Posee cinco cuerdas dobles, aunque hay variaciones con menos o más cuerdas, pero casi siempre en cinco órdenes o juegos.",
+        "clasificationList":[
+            "Instrumento de Cuerda"
+            ,"Instrumento de Cuerda pulsada"
+          ]
+
+}
+ 

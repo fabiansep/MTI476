@@ -1,0 +1,13 @@
+<!ELEMENT producto 		(	name,
+							history,
+							clasificationList
+							)>
+<!ELEMENT name			  		(#PCDATA)>
+<!ELEMENT history				(#PCDATA)>
+<!ELEMENT clasificationList		(clasification*)>
+
+
+<!--atributos producto-->
+<!ATTLIST producto 	productoId 	CDATA #REQUIRED>
+<!--elementos de clasificationList-->
+<!ELEMENT clasification		(#PCDATA)>

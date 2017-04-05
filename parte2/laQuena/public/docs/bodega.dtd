@@ -1,0 +1,18 @@
+<!ELEMENT bodega 		(	establecimiento,
+							productos
+							)>
+<!ELEMENT establecimiento			  		(#PCDATA)>
+<!ELEMENT productos		  		(producto*)>
+<!ELEMENT producto			  		(stock,price)>
+<!ELEMENT stock				(#PCDATA)>
+<!ELEMENT price				(value,currency)>
+
+<!ELEMENT value			  		(#PCDATA)>
+<!ELEMENT currency			  		(#PCDATA)>
+
+<!--atributos establecimiento-->
+<!ATTLIST establecimiento 	establecimientoId 	CDATA #REQUIRED>
+
+<!--atributos producto-->
+<!ATTLIST producto 		  	productoID	CDATA #REQUIRED>
+<!ATTLIST producto  		  	name	CDATA #REQUIRED>

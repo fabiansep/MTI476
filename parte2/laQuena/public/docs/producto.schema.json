@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "laquena.herokuapp.com/public/data/producto.json",
+
+      "properties": {
+        "productoId": {
+          "type": "integer",
+          "title": "IdProduct schema.",
+          "description": "Identificador interno Producto"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name schema.",
+          "description": "Nombre del Producto"
+        },
+
+        "history": {
+          "type": "string",
+          "title": "History schema.",
+          "description": "Historia del Producto"
+        },
+        "clasificationList": {
+          "type": "array",
+          "title": "ClasificationList schema.",
+          "description": "Lista de clasificacion",
+          "items": {
+            "type": "string",
+            "title": "Clasificacion",
+            "description": "Clasificacion de un producto",
+            "minItems":1
+          }
+        },
+  }
+  ,"additionalProperties": false
+}

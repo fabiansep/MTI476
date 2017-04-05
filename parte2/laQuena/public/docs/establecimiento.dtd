@@ -1,0 +1,41 @@
+<!ELEMENT establecimiento 		(name
+								,legalName
+								,email
+								,manager
+								,country
+								,address
+								,geo?
+								,aggregatedRating?
+								,openingHours?
+								,phoneList?)>
+
+<!ELEMENT name			  		(#PCDATA)>
+<!ELEMENT legalName		  		(#PCDATA)>
+<!ELEMENT email			  		(#PCDATA)>
+<!ELEMENT manager		  		(#PCDATA)>
+<!ELEMENT country		  		(#PCDATA)>
+<!ELEMENT address		  		(streetAddress,addressLocality,addressRegion)>
+<!ELEMENT geo			  		(latitude,longitude)>
+<!ELEMENT openingHours			(openingHour+)>
+<!ELEMENT phoneList				(phone*)>
+<!ELEMENT aggregatedRating		(ratingValue,reviewCount)>
+<!--atributos establecimiento-->
+<!ATTLIST establecimiento 	establecimientoId 	CDATA #REQUIRED>
+
+<!--atributos country-->
+<!ATTLIST country 		  	iso31661Code	CDATA #REQUIRED>
+<!--elementos de address-->
+<!ELEMENT streetAddress		(#PCDATA)>
+<!ELEMENT addressLocality 	(#PCDATA)>
+<!ELEMENT addressRegion 	(#PCDATA)>
+<!--elementos de geo-->
+<!ELEMENT latitude			(#PCDATA)>
+<!ELEMENT longitude			(#PCDATA)>
+<!--elementos de openingHours-->
+<!ELEMENT openingHour			(#PCDATA)>
+<!ATTLIST openingHour sequence	CDATA #REQUIRED>
+<!--elementos de phoneList-->
+<!ELEMENT phone					(#PCDATA)>
+<!--elementos de aggregatedRating-->
+<!ELEMENT ratingValue 		(#PCDATA)>
+<!ELEMENT reviewCount 		(#PCDATA)>
